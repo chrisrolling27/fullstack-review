@@ -7,10 +7,10 @@ let repoSchema = mongoose.Schema({
   full_name: String,
   owner: {
     login: String,
-    id: Number,
+    id: Number
 
   },
-    url: String,
+  url: String,
   description: String,
   forks: Number
 
