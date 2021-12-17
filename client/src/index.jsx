@@ -10,19 +10,19 @@ class App extends React.Component {
     this.state = {
       repos: []
     }
-    this.search = this.search.bind(this)
+
   }
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
+    // this one should save info to DB
   }
 
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search}/>
+      <Search onSearch={this.search.bind(this)}/>
     </div>)
   }
 }
