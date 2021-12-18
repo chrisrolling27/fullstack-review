@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+const axios = require('axios');
 
 class App extends React.Component {
   constructor(props) {
@@ -13,9 +14,20 @@ class App extends React.Component {
 
   }
 
+  componentDidMount() {
+    console.log('mounted')
+    axios.get('/repos')
+    .then((response) => this.setState({repos : response.data }))
+  }
+
+
   search (term) {
     console.log(`${term} was searched`);
-    // this one should save info to DB
+    axios.post('/repos', term).then((response) => axios.get('/repos')
+    .then((response) => this.setState({repos : response.data })))
+
+    //console.log(response)))
+
   }
 
   render () {

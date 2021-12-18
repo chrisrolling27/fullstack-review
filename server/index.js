@@ -29,6 +29,8 @@ app.post('/repos', function (req, res) {
 
 app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
+console.log('app.get run');
+
 db.Repo.find({}).then((response) => res.status(200).send(response));
 
 

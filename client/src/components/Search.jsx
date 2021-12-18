@@ -17,7 +17,7 @@ class Search extends React.Component {
   }
 
   search() {
-    console.log('searched by sub component')
+    //console.log('searched by sub component')
 
     this.props.onSearch(this.state.term);
 
