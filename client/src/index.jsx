@@ -23,10 +23,9 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    axios.post('/repos', term).then((response) => axios.get('/repos')
+    axios.post('/repos', {username : term}).then((response) => axios.get('/repos')
     .then((response) => this.setState({repos : response.data })))
 
-    //console.log(response)))
 
   }
 
