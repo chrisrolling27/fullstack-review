@@ -1,7 +1,8 @@
 const express = require('express');
 let app = express();
 const gitHelper = require('../helpers/github.js')
-const save = require('../database/index.js');
+const db = require('../database/index.js');
+
 
 app.use(express.json())
 app.use(express.static(__dirname + '/../client/dist'));
@@ -18,10 +19,9 @@ app.post('/repos', function (req, res) {
   //gitHelper(req.body.username, (data) => {data.map((repo) => {save(repo)})});
   //gitHelper(req.body.username, (response) => {res.status(201).send(response)});
 
-  gitHelper(req.body.username, (data) => {data.map((repo) => {save(repo)})});
+  gitHelper(req.body.username, (data) => {data.map((repo) => {db.save(repo)})});
 
-
-  res.status(201).send('success!!!')
+  res.status(201).send('success')
 
 });
 
@@ -29,7 +29,9 @@ app.post('/repos', function (req, res) {
 
 app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
-  res.status(200).send('hello christopher');
+db.Repo.find({}).then((response) => res.status(200).send(response));
+
+
 });
 
 let port = 1128;
