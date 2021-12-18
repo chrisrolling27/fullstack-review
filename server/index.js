@@ -1,6 +1,7 @@
 const express = require('express');
 let app = express();
 const gitHelper = require('../helpers/github.js')
+const save = require('../database/index.js');
 
 app.use(express.json())
 app.use(express.static(__dirname + '/../client/dist'));
@@ -12,13 +13,17 @@ app.post('/repos', function (req, res) {
   // return the repo information from the github API, then
   // save the repo information in the database
 
+  //gitHelper('chrisrolling27', (data) => {console.log(data[3].id)});
 
-  gitHelper('chrisrolling27', (data) => {console.log(data)});
+  gitHelper('chrisrolling27', (data) => {data.map((repo) => {save(repo)})});
+  //SAVE INFO TO DB
 
 
   res.status(201).send('success!!!')
 
 });
+
+
 
 app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos

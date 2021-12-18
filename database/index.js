@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect('mongodb://localhost/fetcher', { useNewUrlParser: true });
+
 
 let repoSchema = mongoose.Schema({
   id: Number,
   name: String,
-  full_name: String,
+
   owner: {
     login: String,
     id: Number
@@ -16,12 +17,15 @@ let repoSchema = mongoose.Schema({
 
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+let Repo = mongoose.model('Repos', repoSchema);
 
-let save = (/* TODO */) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
+let save = (repo) => {
+// This function should save a repo or repos to the MongoDB
+
+repo = new Repo({id: repo.id, name: repo.name, owner: repo.owner, url: repo.url, description: repo.description, forks: repo.forks})
+
+repo.save();
+
 }
 
-module.exports.save = save;
+module.exports = save;
