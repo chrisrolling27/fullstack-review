@@ -21,12 +21,19 @@ class App extends React.Component {
   }
 
 
+  // search (term) {
+  //   console.log(`${term} was searched`);
+  //   axios.post('/repos', {username : term}).then((response) => console.log(response))
+  // }
+
   search (term) {
     console.log(`${term} was searched`);
-    axios.post('/repos', {username : term}).then((response) => axios.get('/repos')
-    .then((response) => this.setState({repos : response.data })))
-
-
+    axios.post('/repos', {username : term})
+    .then((response) => {
+      console.log(response.data)
+      axios.get('/repos')
+    .then((response) => this.setState({repos : response.data }))}
+    );
   }
 
   render () {

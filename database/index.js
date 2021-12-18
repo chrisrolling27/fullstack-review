@@ -17,7 +17,7 @@ let repoSchema = mongoose.Schema({
 
 });
 
-const Repo = mongoose.model('repos5', repoSchema);
+const Repo = mongoose.model('repos9', repoSchema);
 
 const save = (repo) => {
 // This function should save a repo or repos to the MongoDB

@@ -17,7 +17,8 @@ let getReposByUsername = (username, callback) => {
     }
   };
 
-  axios(options).catch((err) => console.log('ERROR HERE: ', err)).then((response) => callback(response.data));
+  axios(options).catch((err) => console.log('ERROR HERE: ', err))
+  .then((response) => callback(response.data));
 
 
 }
